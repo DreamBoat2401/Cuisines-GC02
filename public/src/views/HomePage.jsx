@@ -18,6 +18,10 @@ export default function HomePage({ base_url }) {
     const pagination = getPagination();
 
     function getPagination() {
+        const maxVisiblePages = 5; 
+        const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        const endPage = Math.min(totalPage, startPage + maxVisiblePages - 1);
+
         let temp = []
         for (let i = 1; i <= totalPage; i++) {
             temp.push(i)
@@ -49,7 +53,7 @@ export default function HomePage({ base_url }) {
                     url += `&categoryId=${currentCategories}`;
                 }
 
-            const { data } = await axios.get(`${base_url}/apis/pub/restaurant-app/cuisines?q=${search}&i=${currentCategories}&limit=8&page=${currentPage}`)
+            const { data } = await axios.get(`${base_url}/apis/pub/restaurant-app/cuisines?q=${search}&i=${currentCategories}&limit=9&page=${currentPage}`)
             if (data && data.data && Array.isArray(data.data.query)) {
                 setCuisines(data.data.query);
                 setTotalPage(data.data.pagination.totalPage);
@@ -57,7 +61,6 @@ export default function HomePage({ base_url }) {
               } else {
                 setCuisines([]);
               }
-              
         } catch (error) {
             console.log(error);
         } finally {
@@ -122,7 +125,6 @@ export default function HomePage({ base_url }) {
     <select className="px-4 py-2 bg-gray-800 text-white rounded-md focus:outline-none" onChange={(e) => setSort(e.target.value)}>
       <option value="order-by">Order By</option>
       {/* Add options here */}
-      <option value="">Sort</option>
           <option value="ASC">ASC</option>
           <option value="DESC">DESC</option>
     </select>
@@ -137,7 +139,6 @@ export default function HomePage({ base_url }) {
     </select>
   </section>
   {/* Card */}
-  
   <section className="grid grid-cols-1 md:grid-cols-3 gap-6 px-8 md:px-32 py-8">
     {cuisines.map((cuisine) => (
   <Card
@@ -149,35 +150,69 @@ export default function HomePage({ base_url }) {
     ))}
   </section>
   </div>
-  <div className="join mt-10 flex items-center justify-center space-x-2">
-          <button
-            className="join-item btn bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full shadow-md"
-            onClick={handlePrev}
-            disabled={currentPage === 1}
-          >
-            «
-          </button>
-          {pagination.map((el) => (
-            <button
-              key={el}
-              className={
-                el === currentPage
-                  ? "join-item btn btn-active bg-green-500 text-white rounded-full shadow-lg px-4 py-2"
-                  : "join-item btn bg-green-400 text-white hover:bg-green-500 rounded-full shadow-md px-4 py-2"
-              }
-              onClick={() => setCurrentPage(el)}
-            >
-              {el}
-            </button>
-          ))}
-          <button
-            className="join-item btn bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-full shadow-md"
-            onClick={handleNext}
-            disabled={currentPage === totalPage}
-          >
-            »
-          </button>
-        </div>
+  <div className="flex justify-center items-center mt-10 space-x-2">
+  {/* Tombol ke halaman pertama */}
+  {currentPage > 1 && (
+    <button
+      className="px-4 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white"
+      onClick={() => setCurrentPage(1)}
+    >
+      « First
+    </button>
+  )}
+
+  {/* Tombol ke halaman sebelumnya */}
+  <button
+    className={`px-4 py-2 rounded-full ${
+      currentPage === 1
+        ? "bg-gray-400 cursor-not-allowed"
+        : "bg-green-500 hover:bg-green-600 text-white"
+    }`}
+    onClick={handlePrev}
+    disabled={currentPage === 1}
+  >
+    «
+  </button>
+
+  {/* Nomor halaman */}
+  {/* {pagination.map((el) => (
+    <button
+      key={el}
+      className={`px-4 py-2 rounded-full ${
+        el === currentPage
+          ? "bg-green-500 text-white"
+          : "bg-gray-300 hover:bg-green-500"
+      }`}
+      onClick={() => setCurrentPage(el)}
+    >
+      {el}
+    </button>
+  ))} */}
+
+  {/* Tombol ke halaman berikutnya */}
+  <button
+    className={`px-4 py-2 rounded-full ${
+      currentPage === totalPage
+        ? "bg-gray-400 cursor-not-allowed"
+        : "bg-green-500 hover:bg-green-600 text-white"
+    }`}
+    onClick={handleNext}
+    disabled={currentPage === totalPage}
+  >
+    »
+  </button>
+
+  {/* Tombol ke halaman terakhir */}
+  {currentPage < totalPage && (
+    <button
+      className="px-4 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white"
+      onClick={() => setCurrentPage(totalPage)}
+    >
+      Last »
+    </button>
+  )}
+</div>
+
     </>
     )
 }
