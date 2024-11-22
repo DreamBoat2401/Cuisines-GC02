@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 
 export default function HomePage({ base_url }) {
@@ -128,9 +128,9 @@ export default function HomePage({ base_url }) {
               <a href="#" className="text-blue-500 hover:text-blue-600" onClick={(e) => (handleEdit(e, el.id))}>
                 <span className="material-icons-outlined">edit</span>
               </a>
-              <a href="#" className="text-green-500 hover:text-green-600">
+              <Link to={`/upload-image/${el.id}`} href="#" className="text-green-500 hover:text-green-600">
                 <span className="material-icons-outlined">image</span>
-              </a>
+              </Link>
             </div>
           </td>
         </tr>

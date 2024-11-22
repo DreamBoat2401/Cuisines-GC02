@@ -23,6 +23,18 @@ export default function DetailPage({ base_url }) {
         }
         fetchCuisine()
     }, [id, base_url])
+
+    if(loading) {
+        return(
+            <div className="mt-32 flex justify-center items-center">
+            <img src="../src/assets/loading.svg" alt="Loading" />
+          </div>
+        )
+    }
+
+    if(!cuisine) {
+        return <p>Cuisine not found</p>
+    }
     return (
         <>
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-green-500 flex flex-col bg-base-100 my-6 items-center p-20">

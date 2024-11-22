@@ -6,6 +6,7 @@ import AddCuisine from "../views/AddCuisine";
 import AddUser from "../views/AddUser";
 import Category from "../views/Category";
 import EditPage from "../views/EditPage";
+import UploadImage from "../views/UploadImage";
 
 const base_url = "https://h8-phase2-gc.vercel.app"
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         {
           path: "/edit/:id",
           element: <EditPage base_url={base_url} />,
+        },
+        {
+          path: "/upload-image/:id",
+          element: <UploadImage base_url={base_url} />,
         },
       ]
     },

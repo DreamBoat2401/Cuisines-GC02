@@ -7,7 +7,7 @@ export default function CuisineForm({
     formTitle,
     nameProp,
     handleSubmit,
-    product
+    cuisine
 }) {
 
   const [name, setName] = useState("");
@@ -39,15 +39,15 @@ export default function CuisineForm({
   }, []);
 
   useEffect(() => {
-    if (product) {
-      setName(product.name);
-      setDescription(product.description);
-      setImgUrl(product.imgUrl);
-      setPrice(product.price);
-      setStock(product.stock);
-      setCategoryId(product.categoryId);
+    if (cuisine) {
+      setName(cuisine.name);
+      setDescription(cuisine.description);
+      setImgUrl(cuisine.imgUrl);
+      setPrice(cuisine.price);
+      setStock(cuisine.stock);
+      setCategoryId(cuisine.categoryId);
     }
-  }, [product]);
+  }, [cuisine]);
 
     return(
         <>
