@@ -24,7 +24,7 @@ export default function LoginPage({ base_url }) {
 
     return (
         <>
-        <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-200 to-red-100">
+        <div className="flex min-h-screen items-center justify-center bg-gray-200">
             <div className="flex flex-col md:flex-row items-center bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-4xl transition-transform transform hover:scale-105 hover:shadow-xl duration-500">
     
                 {/* Image */}
@@ -75,7 +75,7 @@ export default function LoginPage({ base_url }) {
             <div>
             <button
                 type="submit"
-                className="btn w-full bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-gray-900 font-bold shadow-lg rounded-lg py-2 transition-all transform hover:scale-105 duration-300"
+                className="btn w-full bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-gray-900 font-bold shadow-lg rounded-lg py-2 transition-all transform hover:scale-105 duration-300"
             >
                 Log in
           </button>

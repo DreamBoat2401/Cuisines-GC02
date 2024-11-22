@@ -18,10 +18,13 @@ export default function Navbar() {
             </div>
   
         <div className="navbar-end flex items-center space-x-3">
-            <Link to="/add-product" className="btn btn-accent btn-sm hover:bg-accent-dark transition duration-200">
+            <Link to="/categories" className="btn btn-accent btn-sm hover:bg-accent-dark transition duration-200">
+                Categories
+            </Link>
+            <Link to="/add-cuisine" className="btn btn-accent btn-sm hover:bg-accent-dark transition duration-200">
                 Add Cuisine
             </Link>
-            <Link to="/" className="btn btn-neutral btn-sm hover:bg-neutral-dark transition duration-200">
+            <Link to="/add-user" className="btn btn-neutral btn-sm hover:bg-neutral-dark transition duration-200">
                 Add User
             </Link>
                 <button className="btn btn-error btn-sm hover:bg-red-600 transition duration-200" onClick={handleLogout}>
